@@ -17,6 +17,22 @@ def worker():
     logging.info('in worker')
     s3_output_bucket = "nthu-105060005"
     write_excel_to_s3('example.log','example.log', s3_output_bucket)
+    
+    response = None
+    if request.json is None:
+        # Expect application/json request
+        response = Response("", status=415)
+    else:
+        try:
+
+            response = Response("success", status=200)
+
+        except Exception as ex:
+            logging.exception('Error processing message: %s' % request.json)
+            response = Response(ex.message, status=500)
+
+    return response
+    
 
 
 
