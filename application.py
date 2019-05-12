@@ -33,9 +33,6 @@ def write_excel_to_s3(path, file_name, s3_output_bucket):
     # Return a URL to the object
     return "https://%s.s3.amazonaws.com/%s" % (s3_output_bucket, k.key)
 
-s3_output_bucket = "nthu-105060005"
-write_excel_to_s3('example.log','example.log', s3_output_bucket)
-
 @application.route('/worker', methods=['POST'])
 def worker():
     logging.info('in worker')
@@ -64,9 +61,9 @@ def worker():
             os.system("py scraper.py %s" % filePath)
 
             """ write result excel to S3 """
-            
+
             s3_output_bucket = "output-lists"
-            write_excel_to_s3(filePath, modified+'/'+fileName, s3_output_bucket)
+            write_excel_to_s3(filePath, 'modified/'+fileName, s3_output_bucket)
 
 
             response = Response("success", status=200)
