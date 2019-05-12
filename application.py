@@ -12,7 +12,7 @@ from boto.s3.key import Key
 
 
 s3_output_bucket = "nthu-105060005"
-write_excel_to_s3('example.log', s3_output_bucket)
+write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
 
 def write_excel_to_s3(path, file_name, s3_output_bucket):
