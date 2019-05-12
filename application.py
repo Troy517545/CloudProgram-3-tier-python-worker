@@ -1,8 +1,12 @@
 import logging
+import os
+import json
+
 
 logging.basicConfig(filename='example.log',level=logging.DEBUG)
 logging.info('python worker app start')
 logging.info('hi')
+
 
 import flask
 from flask import request, Response
