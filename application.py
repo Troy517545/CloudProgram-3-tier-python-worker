@@ -47,6 +47,8 @@ def worker():
         response = Response("", status=415)
     else:
         try:
+            s3_output_bucket = "nthu-105060005"
+            write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
             response = Response("success", status=200)
 
