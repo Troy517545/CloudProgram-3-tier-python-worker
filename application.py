@@ -9,11 +9,7 @@ from flask import request, Response
 from boto.sqs.message import RawMessage
 from boto.sqs.message import Message
 from boto.s3.key import Key
-
-
-s3_output_bucket = "nthu-105060005"
-write_excel_to_s3('example.log','example.log', s3_output_bucket)
-
+import boto
 
 def write_excel_to_s3(path, file_name, s3_output_bucket):
     # Connect to S3 and get the output bucket
@@ -30,3 +26,8 @@ def write_excel_to_s3(path, file_name, s3_output_bucket):
 
     # Return a URL to the object
     return "https://%s.s3.amazonaws.com/%s" % (s3_output_bucket, k.key)
+
+s3_output_bucket = "nthu-105060005"
+write_excel_to_s3('example.log','example.log', s3_output_bucket)
+
+
