@@ -14,7 +14,7 @@ import boto
 
 
 
-# application = flask.Flask(__name__)
+application = flask.Flask(__name__)
 
 
 def write_excel_to_s3(path, file_name, s3_output_bucket):
