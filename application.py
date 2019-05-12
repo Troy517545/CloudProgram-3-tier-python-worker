@@ -50,11 +50,13 @@ def worker():
             user = request.json['user']
             excelURL = request.json['url']
             fileName = request.json['filename']
+            logging.info('hi')
+
             logging.info("user: %s URL: %s" % (user, excelURL))
 
 
             s3_output_bucket = "nthu-105060005"
-            write_excel_to_s3('example.log','example.log', s3_output_bucket)
+            write_excel_to_s3('test.txt','test.txt', s3_output_bucket)
 
             response = Response("success", status=200)
 
