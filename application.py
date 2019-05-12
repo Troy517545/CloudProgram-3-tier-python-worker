@@ -11,8 +11,8 @@ from boto.sqs.message import Message
 from boto.s3.key import Key
 import boto
 
-s3_output_bucket = "nthu-105060005"
-write_excel_to_s3('example.log','example.log', s3_output_bucket)
+# s3_output_bucket = "nthu-105060005"
+# write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
 
 @application.route('/worker', methods=['POST'])
