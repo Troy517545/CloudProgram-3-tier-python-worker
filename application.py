@@ -56,7 +56,7 @@ def worker():
 
             logging.info("user: %s URL: %s" % (user, excelURL))
 
-            localDir = "excels/"
+            localDir = "excels"
             filePath = localDir+'/'+fileName
 
             print("Downloading excel from %s to %s" % (excelURL, localDir))
