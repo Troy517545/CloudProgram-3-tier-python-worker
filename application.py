@@ -11,13 +11,16 @@ from boto.sqs.message import Message
 from boto.s3.key import Key
 import boto
 
+s3_output_bucket = "nthu-105060005"
+write_excel_to_s3('example.log','example.log', s3_output_bucket)
+
 
 @application.route('/worker', methods=['POST'])
 def worker():
     logging.info('in worker')
-    s3_output_bucket = "nthu-105060005"
-    write_excel_to_s3('example.log','example.log', s3_output_bucket)
-    
+    # s3_output_bucket = "nthu-105060005"
+    # write_excel_to_s3('example.log','example.log', s3_output_bucket)
+
     response = None
     if request.json is None:
         # Expect application/json request
@@ -56,4 +59,4 @@ def write_excel_to_s3(path, file_name, s3_output_bucket):
 
 if __name__ == '__main__':
     #excel.init_excel(application)
-    application.run(host='0.0.0.0', port='80')
+    application.run(host='0.0.0.0', port='50')
