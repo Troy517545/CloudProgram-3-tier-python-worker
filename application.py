@@ -11,6 +11,14 @@ from boto.sqs.message import Message
 from boto.s3.key import Key
 import boto
 
+
+@application.route('/worker', methods=['POST'])
+def worker():
+    s3_output_bucket = "nthu-105060005"
+    write_excel_to_s3('example.log','example.log', s3_output_bucket)
+
+
+
 def write_excel_to_s3(path, file_name, s3_output_bucket):
     # Connect to S3 and get the output bucket
     #s3 = boto.connect_s3(host=s3_endpoint)
@@ -27,7 +35,8 @@ def write_excel_to_s3(path, file_name, s3_output_bucket):
     # Return a URL to the object
     return "https://%s.s3.amazonaws.com/%s" % (s3_output_bucket, k.key)
 
-s3_output_bucket = "nthu-105060005"
-write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
 
+if __name__ == '__main__':
+    #excel.init_excel(application)
+    application.run(host='0.0.0.0', port='80')
