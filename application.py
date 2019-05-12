@@ -14,6 +14,7 @@ import boto
 
 @application.route('/worker', methods=['POST'])
 def worker():
+    logging.info('in worker')
     s3_output_bucket = "nthu-105060005"
     write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
