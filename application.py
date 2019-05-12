@@ -47,6 +47,12 @@ def worker():
         response = Response("", status=415)
     else:
         try:
+            user = request.json['user']
+            excelURL = request.json['url']
+            fileName = request.json['filename']
+            logging.info("user: %s URL: %s" % (user, excelURL))
+
+
             s3_output_bucket = "nthu-105060005"
             write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
