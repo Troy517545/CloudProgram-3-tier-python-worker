@@ -12,10 +12,9 @@ from boto.sqs.message import Message
 from boto.s3.key import Key
 import boto
 
-# s3_output_bucket = "nthu-105060005"
-# write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
-application = flask.Flask(__name__)
+
+# application = flask.Flask(__name__)
 
 
 def write_excel_to_s3(path, file_name, s3_output_bucket):
@@ -34,42 +33,44 @@ def write_excel_to_s3(path, file_name, s3_output_bucket):
     # Return a URL to the object
     return "https://%s.s3.amazonaws.com/%s" % (s3_output_bucket, k.key)
 
+s3_output_bucket = "nthu-105060005"
+write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
-@application.route('/worker', methods=['POST'])
-def worker():
-    logging.info('in worker')
-    # s3_output_bucket = "nthu-105060005"
-    # write_excel_to_s3('example.log','example.log', s3_output_bucket)
+# @application.route('/worker', methods=['POST'])
+# def worker():
+#     logging.info('in worker')
+#     # s3_output_bucket = "nthu-105060005"
+#     # write_excel_to_s3('example.log','example.log', s3_output_bucket)
 
-    response = None
-    if request.json is None:
-        # Expect application/json request
-        response = Response("", status=415)
-    else:
-        try:
-            user = request.json['user']
-            excelURL = request.json['url']
-            fileName = request.json['filename']
-            logging.info('hi')
+#     response = None
+#     if request.json is None:
+#         # Expect application/json request
+#         response = Response("", status=415)
+#     else:
+#         try:
+#             user = request.json['user']
+#             excelURL = request.json['url']
+#             fileName = request.json['filename']
+#             logging.info('hi')
 
-            logging.info("user: %s URL: %s" % (user, excelURL))
+#             logging.info("user: %s URL: %s" % (user, excelURL))
 
 
-            s3_output_bucket = "nthu-105060005"
-            write_excel_to_s3('test.txt','test.txt', s3_output_bucket)
+#             s3_output_bucket = "nthu-105060005"
+#             write_excel_to_s3('test.txt','test.txt', s3_output_bucket)
 
-            response = Response("success", status=200)
+#             response = Response("success", status=200)
 
-        except Exception as ex:
-            logging.exception('Error processing message: %s' % request.json)
-            response = Response(ex.message, status=500)
+#         except Exception as ex:
+#             logging.exception('Error processing message: %s' % request.json)
+#             response = Response(ex.message, status=500)
 
-    return response
+#     return response
     
 
-# test
+# # test
 
 
-if __name__ == '__main__':
-    #excel.init_excel(application)
-    application.run(host='127.0.0.1', port='80')
+# if __name__ == '__main__':
+#     #excel.init_excel(application)
+#     application.run(host='127.0.0.1', port='80')
