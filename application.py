@@ -55,9 +55,19 @@ def worker():
 
             logging.info("user: %s URL: %s" % (user, excelURL))
 
+            localDir = "excels/"
+            filePath = localDir+'/'+fileName
 
-            s3_output_bucket = "nthu-105060005"
-            write_excel_to_s3('test.txt','test.txt', s3_output_bucket)
+            print("Downloading excel from %s to %s" % (excelURL, localDir))
+            os.system("wget -P %s %s" % (localDir, excelURL))
+
+            os.system("py scraper.py %s" % filePath)
+
+            """ write result excel to S3 """
+            
+            s3_output_bucket = "output-lists"
+            write_excel_to_s3(filePath, modified+'/'+fileName, s3_output_bucket)
+
 
             response = Response("success", status=200)
 
