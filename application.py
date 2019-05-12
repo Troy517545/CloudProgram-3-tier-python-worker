@@ -66,7 +66,7 @@ def worker():
 
             """ write result excel to S3 """
 
-            s3_output_bucket = "output-lists"
+            s3_output_bucket = "nthu-105060005"
             write_excel_to_s3(filePath, 'modified/'+fileName, s3_output_bucket)
 
 
